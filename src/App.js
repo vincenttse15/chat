@@ -7,20 +7,18 @@ import Home from "./pages/Home";
 
 function App() {
   return (
-    <>
-      <Router>
-        <Navbar />
+    <Router>
+      <Navbar />
 
-        <Switch>
-          <Route exact path ="/">
-            <Home />
-          </Route>
-          <Route path="/login">
-            <Login />
-          </Route>
-        </Switch>
-      </Router>
-    </>
+      <Switch>
+        <Route exact path ="/">
+          <Home />
+        </Route>
+        <Route path="/login">
+          <Login />
+        </Route>
+      </Switch>
+    </Router>
   );
 }
 

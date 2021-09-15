@@ -1,0 +1,36 @@
+@use 'theme' as *;
+
+.container {
+  height: calc(100% - 72px);
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.text_container {
+  margin-top: 100px;
+  display: flex;
+  flex-direction: column;
+  max-width: 600px;
+  color: $gray-50;
+}
+
+h1 {
+  font-size: 96px;
+  font-weight: 900;
+  margin: 0;
+}
+
+.blue_text {
+  background: -webkit-linear-gradient(145deg, rgba(2,119,189,1) 13%, rgba(41,182,246,1) 71%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+h2 {
+  font-size: 30px;
+  font-weight: 700;
+  margin-top: 30px;
+  margin-bottom: 0px;
+}
