@@ -1,0 +1,42 @@
+@use 'theme' as *;
+
+.container {
+  height: 72px;
+  position: sticky;
+  position: -webkit-sticky;
+  top: 0;
+  background-color: $gray-900;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.icon {
+  font-size: 36px;
+  margin-left: 24px;  
+  color: $gray-50;
+}
+
+.right {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  font-size: 20px;
+  margin-right: 24px;
+  gap: 40px;
+  height: 100%;
+}
+
+.link {
+  text-decoration: none;
+  color: $gray-600;
+  height: 100%;
+  box-sizing: border-box;
+  line-height: 72px;
+}
+
+
+.active {
+  color: $gray-50;
+  border-bottom: 3px solid $gray-50;
+}

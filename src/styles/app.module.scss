@@ -1,0 +1,15 @@
+@use 'theme' as *;
+
+html {
+  min-height: 100%;
+  display: flex;
+}
+
+body {
+  flex: 1;
+  background-color: #121212;
+}
+
+body, html {
+  font-family: "Open Sans", sans-serif;
+}
