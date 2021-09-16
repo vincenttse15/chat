@@ -11,11 +11,12 @@
   margin-top: 100px;
   display: flex;
   flex-direction: column;
+  gap: 30px;
   max-width: 600px;
   color: $gray-50;
 }
 
-h1 {
+.h1 {
   font-size: 96px;
   font-weight: 900;
   margin: 0;
@@ -28,9 +29,27 @@ h1 {
   background-clip: text;
 }
 
-h2 {
+.h2 {
   font-size: 30px;
   font-weight: 700;
-  margin-top: 30px;
-  margin-bottom: 0px;
+  margin: 0px;
+}
+
+.link {
+  text-decoration: none;
+  font-size: 20px;
+  font-weight: 900;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: $gray-50;
+  padding: 8px 16px;
+  width: 200px;
+  border-radius: 100px;
+  background-color: $light-blue-700;
+}
+
+.link:hover {
+  background-color: $light-blue-900;
+  color: $gray-200;
 }
