@@ -44,3 +44,21 @@
   gap: 20px;
   max-width: 100%;
 }
+
+.button {
+  height: 40px;
+  font-size: 20px;
+  font-family: $lato;
+  background-color: $light-blue-700;
+  border: 0px;
+  padding: 8px 16px;
+  font-weight: 900;
+  border-radius: 100px;
+  color: $gray-50;
+}
+
+.button:hover {
+  background-color: $light-blue-900;
+  color: $gray-200;
+  cursor: pointer;
+}
