@@ -27,6 +27,9 @@ const useStylesInput = makeStyles((theme) => ({
   },
   focused: {},
   error: {},
+}));
+
+const helperTextStyles = makeStyles((theme) => ({
   helperText: {
     color: "#ec407a!important",
     fontFamily: font,
@@ -36,11 +39,12 @@ const useStylesInput = makeStyles((theme) => ({
 
 function InputTextField(props) {
   const classes = useStylesInput();
+  const helper = helperTextStyles();
 
   return <TextField 
           InputProps={{ classes, disableUnderline: true }} 
           InputLabelProps={{ style: { color: "#FAFAFA" } }} 
-          FormHelperTextProps={{ className: classes.helperText }} 
+          FormHelperTextProps={{ className: helper.helperText }} 
           {...props}
         />;
 }
@@ -54,13 +58,44 @@ const Signup = () => {
   const [emailError, setEmailError] = React.useState(false);
   const [password, setPassword] = React.useState('');
   const [passwordError, setPasswordError] = React.useState(false);
+  const [invalid, setInvalid] = React.useState(true);
+  
+  async function validate() {
+    const regex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
 
-  function handleSubmit(e) {
+    if (first.length === 0) {
+      setFirstError(true);
+    } else {
+      setFirstError(false);
+    }
+
+    if (last.length === 0) {
+      setLastError(true);
+    } else {
+      setLastError(false);
+    }
+
+    if (email.length === 0 || !email.match(regex)) {
+      setEmailError(true);
+    }
+    else {
+      setEmailError(false);
+    }
+
+    if (password.length < 8) {
+      setPasswordError(true);
+    }
+    else {
+      setPasswordError(false);
+    }
+
+    setInvalid(firstError || lastError || emailError || passwordError);
+  }
+
+  async function handleSubmit(e) {
     e.preventDefault();
-    if (first.length === 0) setFirstError(true);
-    if (last.length === 0) setLastError(true);
-    if (email.length === 0) setEmailError(true);
-    if (password.length < 8) setPasswordError(true);
+    await validate();
+    console.log(invalid);
   };
 
   return (
@@ -73,7 +108,7 @@ const Signup = () => {
         {' '}
         <Link to="/login" className={styles.link}>Log in</Link>
       </h2>
-      <form novalidate autoComplete="off" className={styles.form} onSubmit={handleSubmit}>
+      <form noValidate autoComplete="off" className={styles.form} onSubmit={handleSubmit}>
         <div className={styles.name}>
           <InputTextField
             type="text"
@@ -98,7 +133,7 @@ const Signup = () => {
           label="Email"
           onChange={(e) => setEmail(e.target.value)}
           error={emailError}
-          helperText={emailError ? "Invalid email." : ""}
+          helperText={emailError ? "Invalid email address." : ""}
         />
         <InputTextField
           variant="filled"
