@@ -3,7 +3,7 @@ import * as styles from '../styles/signup.module.scss';
 import { Link } from "react-router-dom";
 import { makeStyles } from "@material-ui/core";
 import { TextField } from "@material-ui/core";
-
+import { SuperAgent as superagent } from "superagent";
 const font = "'Lato', sans-serif";
 
 const useStylesInput = makeStyles((theme) => ({
@@ -95,7 +95,7 @@ const Signup = () => {
   async function handleSubmit(e) {
     e.preventDefault();
     await validate();
-    console.log(invalid);
+    
   };
 
   return (
