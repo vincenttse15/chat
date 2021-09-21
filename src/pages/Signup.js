@@ -1,9 +1,11 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import * as styles from '../styles/signup.module.scss';
 import { Link } from "react-router-dom";
 import { makeStyles } from "@material-ui/core";
 import { TextField } from "@material-ui/core";
-import { SuperAgent as superagent } from "superagent";
+import superagent from 'superagent';
+import API_URL from '../environment';
+
 const font = "'Lato', sans-serif";
 
 const useStylesInput = makeStyles((theme) => ({
@@ -50,15 +52,14 @@ function InputTextField(props) {
 }
 
 const Signup = () => {
-  const [first, setFirst] = React.useState('');
-  const [firstError, setFirstError] = React.useState(false);
-  const [last, setLast] = React.useState('');
-  const [lastError, setLastError] = React.useState(false);
-  const [email, setEmail] = React.useState('');
-  const [emailError, setEmailError] = React.useState(false);
-  const [password, setPassword] = React.useState('');
-  const [passwordError, setPasswordError] = React.useState(false);
-  const [invalid, setInvalid] = React.useState(true);
+  const [first, setFirst] = useState('');
+  const [firstError, setFirstError] = useState(false);
+  const [last, setLast] = useState('');
+  const [lastError, setLastError] = useState(false);
+  const [email, setEmail] = useState('');
+  const [emailError, setEmailError] = useState(false);
+  const [password, setPassword] = useState('');
+  const [passwordError, setPasswordError] = useState(false);
   
   async function validate() {
     const regex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
@@ -89,13 +90,21 @@ const Signup = () => {
       setPasswordError(false);
     }
 
-    setInvalid(firstError || lastError || emailError || passwordError);
+    return (first.length === 0 || last.length === 0 || (email.length === 0 || !email.match(regex)) || password.length < 8);
   }
 
   async function handleSubmit(e) {
     e.preventDefault();
-    await validate();
-    
+    const invalid = await validate();
+    if (!invalid) {
+      const res = await superagent.post(`${API_URL}/signup`)
+        .send({ firstName: first })
+        .send({ lastName: last })
+        .send({ email: email})
+        .send({ password: password });
+      
+      console.log(res);
+    }
   };
 
   return (
