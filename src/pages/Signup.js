@@ -1,11 +1,11 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import * as styles from '../styles/signup.module.scss';
 import { Link } from "react-router-dom";
 import { makeStyles } from "@material-ui/core";
 import { TextField } from "@material-ui/core";
 import superagent from 'superagent';
 import API_URL from '../environment';
-
+import { getUser } from "../utility/User";
 const font = "'Lato', sans-serif";
 
 const useStylesInput = makeStyles((theme) => ({
@@ -97,13 +97,21 @@ const Signup = () => {
     e.preventDefault();
     const invalid = await validate();
     if (!invalid) {
-      const res = await superagent.post(`${API_URL}/signup`)
+      const signup = await superagent.post(`${API_URL}/signup`)
         .send({ firstName: first })
         .send({ lastName: last })
         .send({ email: email})
         .send({ password: password });
-      
-      console.log(res);
+      if (signup.body !== undefined && signup.body.success) {
+        let date = new Date(Date.now() + 12096e5);
+        date = date.toUTCString();
+        document.cookie = `session=${signup.body.cookie}; expires=${date}; path=/`;
+        const user = await getUser();
+        console.log(user);
+      }
+      else {
+        console.log(signup);
+      }
     }
   };
 
