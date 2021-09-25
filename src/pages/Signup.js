@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import * as styles from '../styles/signup.module.scss';
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import { makeStyles } from "@material-ui/core";
 import { TextField } from "@material-ui/core";
 import superagent from 'superagent';
@@ -60,6 +60,7 @@ const Signup = () => {
   const [emailError, setEmailError] = useState(false);
   const [password, setPassword] = useState('');
   const [passwordError, setPasswordError] = useState(false);
+  let history = useHistory();
   
   async function validate() {
     const regex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
@@ -107,7 +108,7 @@ const Signup = () => {
         date = date.toUTCString();
         document.cookie = `session=${signup.body.cookie}; expires=${date}; path=/`;
         const user = await getUser();
-        console.log(user);
+        if (user !== undefined) console.log(user);
       }
       else {
         console.log(signup);
