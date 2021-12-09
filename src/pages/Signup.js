@@ -5,7 +5,9 @@ import { makeStyles } from "@material-ui/core";
 import { TextField } from "@material-ui/core";
 import superagent from 'superagent';
 import API_URL from '../environment';
-import { getUser } from "../utility/User";
+import { useDispatch } from "react-redux";
+import { login } from "../redux/reducers/userReducer";
+
 const font = "'Lato', sans-serif";
 
 const useStylesInput = makeStyles((theme) => ({
@@ -60,7 +62,8 @@ const Signup = () => {
   const [emailError, setEmailError] = useState(false);
   const [password, setPassword] = useState('');
   const [passwordError, setPasswordError] = useState(false);
-  let history = useHistory();
+  const history = useHistory();
+  const dispatch = useDispatch();
   
   async function validate() {
     const regex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
@@ -107,8 +110,8 @@ const Signup = () => {
         let date = new Date(Date.now() + 12096e5);
         date = date.toUTCString();
         document.cookie = `session=${signup.body.cookie}; expires=${date}; path=/`;
-        const user = await getUser();
-        if (user !== undefined) console.log(user);
+        dispatch(login());
+        history.push("/");
       }
       else {
         console.log(signup);
