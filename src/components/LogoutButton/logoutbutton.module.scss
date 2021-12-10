@@ -1,0 +1,17 @@
+@use '../../styles/theme' as *;
+
+.button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: transparent;
+  border: none; 
+  padding: none;
+  font-size: 20px;
+  color: $gray-50;
+}
+
+.button:hover {
+  color: $gray-600;
+  cursor: pointer;
+}

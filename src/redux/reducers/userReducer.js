@@ -29,6 +29,18 @@ export function login() {
         type: 'LOGIN',
         action: user.body,
       })
+    } else {
+      dispatch({
+        type: 'LOGOUT',
+      })
     }
+  }
+}
+
+export function logout() {
+  return async function logoutThunk(dispatch, getState) {
+    dispatch({
+      type: 'LOGOUT'
+    })
   }
 }
