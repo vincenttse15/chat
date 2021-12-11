@@ -6,6 +6,7 @@ import Cookies from 'universal-cookie';
 import superagent from 'superagent';
 import API_URL from '../../environment';
 import { useHistory } from 'react-router';
+
 const LogoutButton = () => {
   const dispatch = useDispatch();
   const cookies = new Cookies();

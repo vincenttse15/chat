@@ -6,7 +6,7 @@ import { TextField } from "@material-ui/core";
 import superagent from 'superagent';
 import API_URL from '../environment';
 import { useDispatch } from "react-redux";
-import { login } from "../redux/reducers/userReducer";
+import { signUp } from "../redux/reducers/userReducer";
 
 const font = "'Lato', sans-serif";
 
@@ -41,7 +41,7 @@ const helperTextStyles = makeStyles((theme) => ({
   },
 }));
 
-function InputTextField(props) {
+export function InputTextField(props) {
   const classes = useStylesInput();
   const helper = helperTextStyles();
 
@@ -110,7 +110,7 @@ const Signup = () => {
         let date = new Date(Date.now() + 12096e5);
         date = date.toUTCString();
         document.cookie = `session=${signup.body.cookie}; expires=${date}; path=/`;
-        dispatch(login());
+        dispatch(signUp());
         history.push("/");
       }
       else {
