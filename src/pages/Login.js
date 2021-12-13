@@ -29,6 +29,12 @@ const Login = () => {
 
     if (!invalid) {
       const login = await superagent.post(`${API_URL}/login`)
+        .send({ email: email })
+        .send({ password: password });
+
+      if (login.body !== undefined && login.body.success) {
+        console.log(login);
+      }
     }
   }
 
