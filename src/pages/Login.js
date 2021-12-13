@@ -12,6 +12,7 @@ const Login = () => {
   const [password, setPassword] = React.useState('');
   const [emailError, setEmailError] = React.useState(false);
   const [passwordError, setPasswordError] = React.useState(false);
+  const [loginError, setLoginError] = React.useState('');
   const dispatch = useDispatch();
   const history = useHistory();
 
@@ -41,9 +42,9 @@ const Login = () => {
         date = date.toUTCString();
         document.cookie = `session=${login.body.cookie}; expires=${date}; path=/`;
         dispatch(loginAction());
-        history.push("/");
+        history.push("/messages");
       } else {
-        console.log(login.body);
+        setLoginError(login.body.message);
       }
     }
   }
@@ -75,6 +76,11 @@ const Login = () => {
           error={passwordError}
           helperText={passwordError ? "This field is required" : ""}
         />
+        {loginError.length !== 0 && 
+          <div className={styles.error}>
+            {loginError}
+          </div>
+        }
         <button type="submit" className={styles.button}>Log in</button>
       </form>
     </div>

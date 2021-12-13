@@ -62,3 +62,10 @@
   color: $gray-200;
   cursor: pointer;
 }
+
+.error {
+  color: $error;
+  font-size: 20px;
+  align-self: center;
+  font-weight: 700;
+}

@@ -5,6 +5,7 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Login from "./pages/Login";
 import Home from "./pages/Home";
 import Signup from "./pages/Signup";
+import Messages from "./pages/Messages/Messages";
 import { CookiesProvider } from "react-cookie";
 
 function App() {
@@ -22,6 +23,9 @@ function App() {
           </Route>
           <Route path="/signup">
             <Signup />
+          </Route>
+          <Route path="/messages">
+            <Messages />
           </Route>
         </Switch>
       </Router>

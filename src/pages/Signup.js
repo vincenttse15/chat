@@ -62,6 +62,8 @@ const Signup = () => {
   const [emailError, setEmailError] = useState(false);
   const [password, setPassword] = useState('');
   const [passwordError, setPasswordError] = useState(false);
+  const [signUpError, setSignUpError] = useState('');
+
   const history = useHistory();
   const dispatch = useDispatch();
   
@@ -111,10 +113,10 @@ const Signup = () => {
         date = date.toUTCString();
         document.cookie = `session=${signup.body.cookie}; expires=${date}; path=/`;
         dispatch(login());
-        history.push("/");
+        history.push("/messages");
       }
       else {
-        console.log(signup);
+        setSignUpError(signup.body.message);
       }
     }
   };
@@ -164,6 +166,11 @@ const Signup = () => {
           error={passwordError}
           helperText={passwordError ? "Password must be at least 8 characters." : ""}
         />
+        {signUpError.length !== 0 && 
+          <div className={styles.error}>
+            {signUpError}
+          </div>
+        }
         <button type="submit" className={styles.button}>Create account</button>
       </form>
     </div>
