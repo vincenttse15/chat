@@ -4,12 +4,16 @@ import { Link, useHistory } from "react-router-dom";
 import { InputTextField } from "./Signup";
 import superagent from 'superagent';
 import API_URL from "../environment";
+import { useDispatch } from "react-redux";
+import { login as loginAction } from "../redux/reducers/userReducer";
 
 const Login = () => {
   const [email, setEmail] = React.useState('');
   const [password, setPassword] = React.useState('');
   const [emailError, setEmailError] = React.useState(false);
   const [passwordError, setPasswordError] = React.useState(false);
+  const dispatch = useDispatch();
+  const history = useHistory();
 
   async function validate(){
     if (email.length === 0) {
@@ -33,7 +37,13 @@ const Login = () => {
         .send({ password: password });
 
       if (login.body !== undefined && login.body.success) {
-        console.log(login);
+        let date = new Date(Date.now() + 12096e5);
+        date = date.toUTCString();
+        document.cookie = `session=${login.body.cookie}; expires=${date}; path=/`;
+        dispatch(loginAction());
+        history.push("/");
+      } else {
+        console.log(login.body);
       }
     }
   }

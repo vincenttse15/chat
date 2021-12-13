@@ -21,8 +21,8 @@ export default function userReducer(state = INITIAL_STATE, action) {
   }
 };
 
-export function signUp() {
-  return async function signupThunk(dispatch, getState) {
+export function login() {
+  return async function loginThunk(dispatch, getState) {
     const user = await getUser();
     if (user !== undefined) {
       dispatch({
