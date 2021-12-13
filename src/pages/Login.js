@@ -36,7 +36,7 @@ const Login = () => {
         .send({ email: email })
         .send({ password: password });
 
-      if (login.body !== undefined && login.body.success) {
+      if (login.body !== undefined && login.body?.success) {
         let date = new Date(Date.now() + 12096e5);
         date = date.toUTCString();
         document.cookie = `session=${login.body.cookie}; expires=${date}; path=/`;

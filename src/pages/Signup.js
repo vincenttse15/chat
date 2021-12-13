@@ -106,7 +106,7 @@ const Signup = () => {
         .send({ lastName: last })
         .send({ email: email})
         .send({ password: password });
-      if (signup.body !== undefined && signup.body.success) {
+      if (signup.body !== undefined && signup.body?.success) {
         let date = new Date(Date.now() + 12096e5);
         date = date.toUTCString();
         document.cookie = `session=${signup.body.cookie}; expires=${date}; path=/`;
