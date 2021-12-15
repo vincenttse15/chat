@@ -1,0 +1,46 @@
+@use '../../../styles/theme' as *;
+
+.container {
+  width: 50%;
+  border: 2px solid $light-blue-700;
+  border-radius: 4px;
+  height: 50px;
+  margin-top: 50px;
+  display: flex;
+  flex-direction: row;
+}
+
+.searchButton {
+  background-color: $light-blue-700;
+  border: none;
+  width: 10%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.searchButton:hover {
+  cursor: pointer;
+}
+
+.icon {
+  color: $gray-50;
+  font-size: 20px;
+}
+
+.input {
+  border: none;
+  width: 100%;
+  background-color: $black;
+  color: $gray-50;
+  outline: none;
+  font-family: $lato;
+  font-size: 24px;
+  display: flex;
+  justify-content: center;
+  padding-left: 15px;
+}
+
+input::placeholder {
+  color: $gray-50;
+}
