@@ -4,17 +4,22 @@ import { logout } from '../../redux/reducers/userReducer';
 import { useDispatch } from 'react-redux';
 import Cookies from 'universal-cookie';
 import superagent from 'superagent';
-import API_URL from '../../environment';
+import { API_URL } from '../../environment';
 import { useHistory } from 'react-router';
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { fas } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-const LogoutButton = () => {
+const LogoutButton = (props) => {
   const dispatch = useDispatch();
   const cookies = new Cookies();
   const history = useHistory();
   library.add(fas);
+
+  const {
+    ws, 
+    setWs,
+  } = props;
 
   async function handleLogout() {
     const loggedOut = await superagent.post(`${API_URL}/logout`)
@@ -24,6 +29,8 @@ const LogoutButton = () => {
       cookies.remove('session');
       dispatch(logout());
       history.push("/");
+      ws.close();
+      setWs(null);
     }
   }
 

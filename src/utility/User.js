@@ -1,6 +1,6 @@
 import superagent from "superagent";
 import Cookies from "universal-cookie";
-import API_URL from "../environment";
+import { API_URL } from "../environment";
 
 const cookies = new Cookies();
 

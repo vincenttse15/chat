@@ -11,14 +11,24 @@ import { library } from '@fortawesome/fontawesome-svg-core';
 import { far } from "@fortawesome/free-regular-svg-icons";
 import { fas } from "@fortawesome/free-solid-svg-icons";
 import { CookiesProvider } from "react-cookie";
+import { useSelector } from "react-redux";
+import { createConnection } from "./utility/Notifications";
 
 function App() {
   library.add(far, fas);
-  
+  const user = useSelector(state => state.userReducer);
+  const [ws, setWs] = React.useState(null);
+
+  React.useEffect(() => {
+    if (user.firstName !== '') {
+      setWs(createConnection());
+    }
+  }, [user.firstName]);
+
   return (
     <CookiesProvider>
       <Router>
-        <Navbar />
+        <Navbar ws={ws} setWs={setWs}/>
 
         <Switch>
           <Route exact path ="/">

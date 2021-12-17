@@ -3,7 +3,7 @@ import * as styles from "../styles/login.module.scss";
 import { Link, useHistory } from "react-router-dom";
 import { InputTextField } from "./Signup";
 import superagent from 'superagent';
-import API_URL from "../environment";
+import { API_URL } from "../environment";
 import { useDispatch } from "react-redux";
 import { login as loginAction } from "../redux/reducers/userReducer";
 

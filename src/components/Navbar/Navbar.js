@@ -5,8 +5,12 @@ import { NavLink } from "react-router-dom";
 import { useSelector } from "react-redux";
 import LogoutButton from '../LogoutButton/LogoutButton';
 
-const Navbar = () => {
+const Navbar = (props) => {
   const user = useSelector(state => state.userReducer);
+  const {
+    ws,
+    setWs,
+  } = props;
 
   return (
     <div className={styles.container}>
@@ -20,7 +24,7 @@ const Navbar = () => {
           <NavLink to="/addfriend" className={styles.link} activeClassName={styles.active}>
             <FontAwesomeIcon icon={["fas", "user-plus"]} />
           </NavLink>
-          <LogoutButton />
+          <LogoutButton ws={ws} setWs={setWs}/>
         </div>
         :
         <div className={styles.right}>
