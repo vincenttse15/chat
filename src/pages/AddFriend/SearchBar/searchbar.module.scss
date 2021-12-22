@@ -44,10 +44,17 @@ input::placeholder {
   color: $gray-50;
 }
 
-.error {
+.resultMessage {
   margin-top: 20px;
-  color: $error;
   font-size: 24px;
+}
+
+.success {
+  color: $success;
+}
+
+.error {
+  color: $error;
 }
 
 .disabledButton {

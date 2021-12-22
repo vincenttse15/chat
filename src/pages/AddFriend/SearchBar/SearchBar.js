@@ -4,22 +4,30 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import superagent from "superagent";
 import { API_URL } from "../../../environment";
 import Cookies from "universal-cookie";
+import { useSelector } from "react-redux";
 
 const SearchBar = () => {
   const [email, setEmail] = React.useState('');
   const [searchResult, setSearchResult] = React.useState('');
+  const [resultError, setResultError] = React.useState(false);
   const [loading, setLoading] = React.useState(false);
+  const user = useSelector(state => state.userReducer);
 
   async function validate() {
     const regex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
 
     if (email.length === 0) {
       setSearchResult("This field is required.");
+      setResultError(true);
     } else if (!email.match(regex)) {
       setSearchResult("Enter a valid email.");
+      setResultError(true);
+    } else if (email === user.email) {
+      setSearchResult("You cannot add yourself.");
+      setResultError(true);
     }
 
-    return (email.length === 0 || !email.match(regex));
+    return (email.length === 0 || !email.match(regex) || email === user.email);
   }
 
   async function sendFriendRequest(e) {
@@ -37,9 +45,11 @@ const SearchBar = () => {
 
       setLoading(false);
       if (response.body !== undefined && response.body?.success) {
-        console.log(response.body);
+        setSearchResult(response.body.message);
+        setResultError(false);
       } else {
         setSearchResult(response.body.message);
+        setResultError(true);
       }
     }
   }
@@ -53,7 +63,7 @@ const SearchBar = () => {
         <input type="text" className={styles.input} placeholder="Search by email" onChange={(e) => setEmail(e.target.value)} />
       </form>
       {searchResult.length > 0 &&
-        <div className={styles.error}>
+        <div className={`${styles.resultMessage} ${resultError ? `${styles.error}` : `${styles.success}`}`}>
           {searchResult}
         </div>
       }
