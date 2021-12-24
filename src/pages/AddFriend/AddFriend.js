@@ -1,19 +1,23 @@
 import React from "react";
 import * as styles from './addfriend.module.scss';
-import SearchBar from "./SearchBar/SearchBar";
+import AddFriendTab from "./AddFriendTab/AddFriendTab";
 
 const AddFriend = () => {
+  const [tab, setTab] = React.useState('AddFriend');
+
   return (
     <div className={styles.container}>
-      <div className={styles.text}>
-        <h1>
-          ADD FRIEND
-        </h1>
-        <h2>
-          You can send a request to a friend with their email.
-        </h2>
+      <div className={styles.buttonContainer}>
+        <button type="button" onClick={() => setTab('AddFriend')} className={styles.button}>Add Friend</button>
+        <button type="button" onClick={() => setTab('Pending')} className={styles.button}>Pending</button>
       </div>
-      <SearchBar />
+      {tab === 'AddFriend' ? 
+        <AddFriendTab />
+        :
+        <div>
+          A
+        </div>
+      }
     </div>
   );
 }
