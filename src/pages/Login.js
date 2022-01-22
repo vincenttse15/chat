@@ -5,7 +5,7 @@ import { InputTextField } from "./Signup";
 import superagent from 'superagent';
 import { API_URL } from "../environment";
 import { useDispatch } from "react-redux";
-import { login as loginAction } from "../redux/reducers/userReducer";
+import { login as loginAction } from "../redux/actions/userActions";
 
 const Login = () => {
   const [email, setEmail] = React.useState('');

@@ -13,12 +13,14 @@ import { fas } from "@fortawesome/free-solid-svg-icons";
 import { CookiesProvider } from "react-cookie";
 import { useSelector } from "react-redux";
 import { createConnection } from "./utility/Notifications";
+import Cookies from "universal-cookie";
 
 function App() {
   library.add(far, fas);
   const user = useSelector(state => state.userReducer);
   const [ws, setWs] = React.useState(null);
-
+  const cookies = new Cookies();
+  
   React.useEffect(() => {
     if (user.firstName !== '') {
       setWs(createConnection());

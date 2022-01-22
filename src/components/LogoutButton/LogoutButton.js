@@ -1,6 +1,6 @@
 import React from 'react';
 import * as styles from './logoutbutton.module.scss';
-import { logout } from '../../redux/reducers/userReducer';
+import { logout } from '../../redux/actions/userActions';
 import { useDispatch } from 'react-redux';
 import Cookies from 'universal-cookie';
 import superagent from 'superagent';

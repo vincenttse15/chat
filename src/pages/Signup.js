@@ -6,7 +6,7 @@ import { TextField } from "@material-ui/core";
 import superagent from 'superagent';
 import { API_URL } from '../environment';
 import { useDispatch } from "react-redux";
-import { login } from "../redux/reducers/userReducer";
+import { login } from "../redux/actions/userActions";
 
 const font = "'Lato', sans-serif";
 

@@ -1,11 +1,12 @@
 import React from "react";
-import * as styles from './addfriendtab.module.scss';
+import * as sharedStyles from '../SharedStyles/addfriendsharedstyles.module.scss';
+import * as specificStyles from './addfriendtab.module.scss';
 import SearchBar from "../SearchBar/SearchBar";
 
 const AddFriendTab = () => {
   return (
     <>
-      <div className={styles.text}>
+      <div className={sharedStyles.text}>
         <h1>
           ADD FRIEND
         </h1>

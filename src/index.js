@@ -10,6 +10,7 @@ import userReducer from './redux/reducers/userReducer';
 import storage from 'redux-persist/lib/storage';
 import { persistStore, persistReducer} from 'redux-persist';
 import { PersistGate } from 'redux-persist/integration/react';
+import { createLogger } from 'redux-logger';
 
 const rootReducer = combineReducers({
   userReducer,
@@ -20,9 +21,10 @@ const persistConfig = {
   storage,
 }
 
+const logger = createLogger();
 const persistedReducer = persistReducer(persistConfig, rootReducer);
 
-const store = createStore(persistedReducer, applyMiddleware(thunk));
+const store = createStore(persistedReducer, applyMiddleware(thunk, logger));
 
 const persistor = persistStore(store);
 

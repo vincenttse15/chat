@@ -1,46 +1,21 @@
-import { getUser } from "../../utility/User";
+import { addUserToStore } from "../reducerFunctions/userReducerFunctions";
 
 const INITIAL_STATE = {
-  firstName: '',
-  lastName: '',
-  email: '',
+  firstName: "",
+  lastName: "",
+  email: "",
 };
+
+const LOGIN = "LOGIN";
+const LOGOUT = "LOGOUT";
 
 export default function userReducer(state = INITIAL_STATE, action) {
   switch (action.type) {
-    case 'LOGIN':
-      return {
-        firstName: action.action.firstName,
-        lastName: action.action.lastName,
-        email: action.action.email,
-      }
-    case 'LOGOUT':
+    case LOGIN:
+      return addUserToStore(state, action.payload);
+    case LOGOUT:
       return INITIAL_STATE;
     default:
       return state;
   }
 };
-
-export function login() {
-  return async function loginThunk(dispatch, getState) {
-    const user = await getUser();
-    if (user !== undefined) {
-      dispatch({
-        type: 'LOGIN',
-        action: user.body,
-      })
-    } else {
-      dispatch({
-        type: 'LOGOUT',
-      })
-    }
-  }
-}
-
-export function logout() {
-  return async function logoutThunk(dispatch, getState) {
-    dispatch({
-      type: 'LOGOUT'
-    })
-  }
-}
