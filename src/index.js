@@ -6,14 +6,15 @@ import reportWebVitals from './reportWebVitals';
 import { Provider } from 'react-redux';
 import thunk from 'redux-thunk';
 import { createStore, combineReducers, applyMiddleware } from 'redux';
-import userReducer from './redux/reducers/userReducer';
+import user from './redux/reducers/userReducer';
+import friend from './redux/reducers/friendReducer';
 import storage from 'redux-persist/lib/storage';
 import { persistStore, persistReducer} from 'redux-persist';
 import { PersistGate } from 'redux-persist/integration/react';
 import { createLogger } from 'redux-logger';
 
 const rootReducer = combineReducers({
-  userReducer,
+  user, friend,
 });
 
 const persistConfig = {

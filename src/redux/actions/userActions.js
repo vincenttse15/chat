@@ -1,7 +1,7 @@
 import { getUser } from "../../utility/User";
 
 export function login() {
-  return async function loginThunk(dispatch, getState) {
+  return async function loginThunk(dispatch) {
     const user = await getUser();
     if (user !== undefined) {
       dispatch({
@@ -17,7 +17,7 @@ export function login() {
 }
 
 export function logout() {
-  return async function logoutThunk(dispatch, getState) {
+  return async function logoutThunk(dispatch) {
     dispatch({
       type: 'LOGOUT'
     })
