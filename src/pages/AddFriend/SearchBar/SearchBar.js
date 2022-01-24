@@ -11,7 +11,7 @@ const SearchBar = () => {
   const [searchResult, setSearchResult] = React.useState('');
   const [resultError, setResultError] = React.useState(false);
   const [loading, setLoading] = React.useState(false);
-  const user = useSelector(state => state.userReducer);
+  const user = useSelector(state => state.user);
 
   async function validate() {
     const regex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;

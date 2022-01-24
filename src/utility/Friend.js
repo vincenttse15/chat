@@ -8,5 +8,5 @@ export const getFriendsAndRequests = async () => {
   const cookie = cookies.get("session");
   const requests = await superagent.get(`${API_URL}/getRequests`)
     .query({cookie: cookie});
-  console.log(requests);
+  return requests;
 };

@@ -6,8 +6,13 @@ import superagent from 'superagent';
 import { API_URL } from "../environment";
 import { useDispatch } from "react-redux";
 import { login as loginAction } from "../redux/actions/userActions";
+import { createConnection } from "../utility/Notifications";
+import { useSelector } from "react-redux";
+import { Redirect } from "react-router-dom";
+import { loadFriendsAndRequests } from "../redux/actions/friendActions";
 
-const Login = () => {
+const Login = (props) => {
+  const user = useSelector(state => state.user);
   const [email, setEmail] = React.useState('');
   const [password, setPassword] = React.useState('');
   const [emailError, setEmailError] = React.useState(false);
@@ -15,6 +20,13 @@ const Login = () => {
   const [loginError, setLoginError] = React.useState('');
   const dispatch = useDispatch();
   const history = useHistory();
+  const {
+    setWs,
+  } = props;
+
+  if (user.firstName !== "") {
+    return <Redirect to="/messages" />
+  }
 
   async function validate(){
     if (email.length === 0) {
@@ -41,7 +53,9 @@ const Login = () => {
         let date = new Date(Date.now() + 12096e5);
         date = date.toUTCString();
         document.cookie = `session=${login.body.cookie}; expires=${date}; path=/`;
+        setWs(createConnection());
         dispatch(loginAction());
+        dispatch(loadFriendsAndRequests());
         history.push("/messages");
       } else {
         setLoginError(login.body.message);

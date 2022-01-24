@@ -8,33 +8,20 @@ import thunk from 'redux-thunk';
 import { createStore, combineReducers, applyMiddleware } from 'redux';
 import user from './redux/reducers/userReducer';
 import friend from './redux/reducers/friendReducer';
-import storage from 'redux-persist/lib/storage';
-import { persistStore, persistReducer} from 'redux-persist';
-import { PersistGate } from 'redux-persist/integration/react';
 import { createLogger } from 'redux-logger';
 
-const rootReducer = combineReducers({
+export const rootReducer = combineReducers({
   user, friend,
 });
 
-const persistConfig = {
-  key: 'root',
-  storage,
-}
-
 const logger = createLogger();
-const persistedReducer = persistReducer(persistConfig, rootReducer);
 
-const store = createStore(persistedReducer, applyMiddleware(thunk, logger));
-
-const persistor = persistStore(store);
+const store = createStore(rootReducer, applyMiddleware(thunk, logger));
 
 ReactDOM.render(
   <React.StrictMode>
     <Provider store={store}>
-      <PersistGate loading={null} persistor={persistor}>
         <App />
-      </PersistGate>
     </Provider>
   </React.StrictMode>,
   document.getElementById('root')
