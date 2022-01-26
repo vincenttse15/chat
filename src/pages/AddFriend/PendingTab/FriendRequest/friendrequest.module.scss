@@ -1,0 +1,49 @@
+@use '../../../../styles/theme' as *;
+
+.container {
+  color: $gray-50;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  background-color: $gray-900;
+  padding: 20px 20px;
+  border-radius: 10px;
+}
+
+.text {
+  font-size: 24px;
+}
+
+.btnContainer {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
+
+.btn {
+  border: none;
+  padding: 0px;
+  width: 40px;
+  height: 40px;
+  border-radius: 4px;
+}
+
+.btn:hover {
+  cursor: pointer;
+}
+
+.icon {
+  font-size: 24px;
+  color: $gray-50;
+}
+
+.accept {
+  background-color: $success;
+}
+
+.decline {
+  background-color: $error;
+}

@@ -1,16 +1,15 @@
 import React from "react";
-import { useSelector } from "react-redux";
 import { Route, Redirect } from "react-router-dom";
-
+import Cookies from "universal-cookie";
 const PublicRoute = (props) => {
-  const user = useSelector(state => state.user);
+  const cookies = new Cookies();
 
   const {
     component,
     path,
   } = props;
 
-  if (user.firstName !== "") {
+  if (cookies.get("session")) {
     return <Redirect to="/messages" />
   }
 

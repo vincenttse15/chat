@@ -1,8 +1,8 @@
 @use '../../../styles/theme' as *;
 
-h1 {
-  color: $gray-50;
-  font-size: 48px;
-  margin-top: 100px;
-  margin-bottom: 10px;
+.requestsContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 50%;
 }

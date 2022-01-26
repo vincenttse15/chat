@@ -16,7 +16,7 @@ export const rootReducer = combineReducers({
 
 const logger = createLogger();
 
-const store = createStore(rootReducer, applyMiddleware(thunk, logger));
+export const store = createStore(rootReducer, applyMiddleware(thunk, logger));
 
 ReactDOM.render(
   <React.StrictMode>
