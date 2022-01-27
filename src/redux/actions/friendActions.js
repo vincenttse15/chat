@@ -20,3 +20,21 @@ export function addFriendRequest(message) {
     })
   }
 }
+
+export function addNewFriend(friend) {
+  return async function addNewFriend(dispatch) {
+    dispatch({
+      type: "ADD_NEW_FRIEND",
+      payload: friend,
+    })
+  }
+}
+
+export function removeFriendRequest(from) {
+  return async function removeFriendRequest(dispatch) {
+    dispatch({
+      type: "REMOVE_FRIEND_REQUEST",
+      payload: from,
+    })
+  }
+}
