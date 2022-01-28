@@ -1,7 +1,14 @@
-export const addFriendsAndRequestsToStore = (state, payload) => {
+export const addRequestsToStore = (state, payload) => {
   return {
     ...state,
     requests: payload,
+  }
+};
+
+export const addFriendsToStore = (state, payload) => {
+  return {
+    ...state,
+    friends: payload,
   }
 };
 

@@ -1,0 +1,6 @@
+@use '../../styles/theme' as *;
+
+.container {
+  height: calc(100% - 72px);
+  display: flex;
+}

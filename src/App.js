@@ -7,6 +7,7 @@ import Home from "./pages/Home";
 import Signup from "./pages/Signup";
 import Messages from "./pages/Messages/Messages";
 import AddFriend from "./pages/AddFriend/AddFriend";
+import FriendsList from "./pages/FriendsList/FriendsList";
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { far } from "@fortawesome/free-regular-svg-icons";
 import { fas } from "@fortawesome/free-solid-svg-icons";
@@ -15,7 +16,7 @@ import { createConnection } from "./utility/Notifications";
 import PublicRoute from "./routes/PublicRoute";
 import ProtectedRoute from "./routes/ProtectedRoute";
 import { useDispatch } from "react-redux";
-import { loadFriendsAndRequests } from "./redux/actions/friendActions";
+import { loadRequests, loadFriends } from "./redux/actions/friendActions";
 import { login } from "./redux/actions/userActions";
 import Cookies from "universal-cookie";
 
@@ -33,7 +34,8 @@ function App() {
     if (cookieMemo) {
       setWs(createConnection());
       dispatch(login());
-      dispatch(loadFriendsAndRequests());
+      dispatch(loadRequests());
+      dispatch(loadFriends());
     }
   }, [cookieMemo, dispatch]);
 
@@ -50,6 +52,7 @@ function App() {
           <PublicRoute path="/signup" component={Signup} />
           <ProtectedRoute path="/messages" component={Messages} />
           <ProtectedRoute path="/addfriend" component={AddFriend} />
+          <ProtectedRoute path="/friendslist" component={FriendsList} />
           <Redirect to="/home" />
         </Switch>
       </Router>

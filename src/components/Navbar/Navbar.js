@@ -24,6 +24,9 @@ const Navbar = (props) => {
           <NavLink to="/addfriend" className={styles.link} activeClassName={styles.active}>
             <FontAwesomeIcon icon={["fas", "user-plus"]} />
           </NavLink>
+          <NavLink to="/friendslist" className={styles.link} activeClassName={styles.active}>
+            <FontAwesomeIcon icon={["fas", "user-friends"]} />
+          </NavLink>
           <LogoutButton ws={ws} setWs={setWs}/>
         </div>
         :

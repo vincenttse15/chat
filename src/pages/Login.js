@@ -9,7 +9,7 @@ import { login as loginAction } from "../redux/actions/userActions";
 import { createConnection } from "../utility/Notifications";
 import { useSelector } from "react-redux";
 import { Redirect } from "react-router-dom";
-import { loadFriendsAndRequests } from "../redux/actions/friendActions";
+import { loadRequests, loadFriends } from "../redux/actions/friendActions";
 
 const Login = (props) => {
   const user = useSelector(state => state.user);
@@ -55,7 +55,8 @@ const Login = (props) => {
         document.cookie = `session=${login.body.cookie}; expires=${date}; path=/`;
         setWs(createConnection());
         dispatch(loginAction());
-        dispatch(loadFriendsAndRequests());
+        dispatch(loadRequests());
+        dispatch(loadFriends());
         history.push("/messages");
       } else {
         setLoginError(login.body.message);

@@ -1,12 +1,24 @@
-import { getFriendsAndRequests } from "../../utility/Friend"
+import { getRequests, getFriends } from "../../utility/Friend"
 
-export function loadFriendsAndRequests() {
-  return async function loadFriendsAndRequestsThunk(dispatch) {
-    const requests = await getFriendsAndRequests();
+export function loadRequests() {
+  return async function loadRequests(dispatch) {
+    const requests = await getRequests();
     if (requests) {
       dispatch({
-        type: "LOAD_FRIENDS_AND_REQUESTS",
+        type: "LOAD_REQUESTS",
         payload: requests.body,
+      })
+    }
+  }
+}
+
+export function loadFriends() {
+  return async function loadFriends(dispatch) {
+    const friends = await getFriends();
+    if (friends) {
+      dispatch({
+        type: "LOAD_FRIENDS",
+        payload: friends.body,
       })
     }
   }
