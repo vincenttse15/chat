@@ -10,14 +10,19 @@ const PendingTab = () => {
   return (
     <>
       <div className={sharedStyles.text}>
-        <h1>
+        <h1 className={sharedStyles.h1}>
           PENDING REQUESTS
         </h1>
       </div>
       <div className={specificStyles.requestsContainer}>
-        {requests.map((request) => 
-          <FriendRequest key={request.from} from={request.from}/>
-        )}
+        {requests.length > 0 ?
+          requests.map((request) =>
+            <FriendRequest key={request.from} from={request.from} />
+          ) :
+          <h2 className={sharedStyles.h2}>
+            No requests right now.
+          </h2>
+        }
       </div>
     </>
   )

@@ -15,7 +15,6 @@ export const getFriends = async () => {
   const cookie = cookies.get("session");
   const friends = await superagent.get(`${API_URL}/getFriends`)
     .query({ cookie: cookie });
-  console.log(friends);
   return friends;
 };
 
@@ -32,5 +31,15 @@ export const declineFriendRequest = async (from, to) => {
     .send({ to: to })
     .send({ from: from });
   
+  return removed;
+}
+
+export const removeFriend = async (friend, owner) => {
+  const cookie = cookies.get("session");
+  const removed = await superagent.post(`${API_URL}/removeFriend`)
+    .send({ owner: owner })
+    .send({ friend: friend })
+    .send({ cookie: cookie });
+
   return removed;
 }

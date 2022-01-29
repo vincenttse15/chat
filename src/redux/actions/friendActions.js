@@ -50,3 +50,12 @@ export function removeFriendRequest(from) {
     })
   }
 }
+
+export function removeFriend(email) {
+  return async function removeFriend(dispatch) {
+    dispatch({
+      type: "REMOVE_FRIEND",
+      payload: email,
+    })
+  }
+}

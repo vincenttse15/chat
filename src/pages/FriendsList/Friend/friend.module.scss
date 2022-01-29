@@ -1,4 +1,4 @@
-@use '../../../../styles/theme' as *;
+@use '../../../styles/theme' as *;
 
 .container {
   color: $gray-50;
@@ -12,7 +12,13 @@
 }
 
 .text {
+  display: flex;
+  flex-direction: column;
   font-size: 24px;
+}
+
+.email {
+  color: $light-blue-500;
 }
 
 .btnContainer {
@@ -29,29 +35,15 @@
   width: 40px;
   height: 40px;
   border-radius: 4px;
+  background-color: $gray-800;
 }
 
 .btn:hover {
   cursor: pointer;
+  background-color: $black;
 }
 
 .icon {
   font-size: 24px;
   color: $gray-50;
-}
-
-.accept {
-  background-color: $success;
-}
-
-.accept:hover {
-  background-color: $success-hover;
-}
-
-.decline {
-  background-color: $error;
-}
-
-.decline:hover {
-  background-color: $error-hover;
 }

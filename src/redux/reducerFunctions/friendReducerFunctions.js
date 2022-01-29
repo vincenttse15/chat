@@ -6,6 +6,12 @@ export const addRequestsToStore = (state, payload) => {
 };
 
 export const addFriendsToStore = (state, payload) => {
+  payload.sort((a, b) => {
+    let user1 = a.firstName + " " + a.lastName;
+    let user2 = b.firstName + " " + b.lastName;
+    return user1.localeCompare(user2);
+  });
+  
   return {
     ...state,
     friends: payload,
@@ -42,5 +48,12 @@ export const removeFriendRequestFromStore = (state, payload) => {
   return {
     ...state,
     requests: state.requests.filter((request) => request.from !== payload),
+  };
+};
+
+export const removeFriendFromStore = (state, payload) => {
+  return {
+    ...state,
+    friends: state.friends.filter((friend) => friend.email !== payload),
   };
 };
